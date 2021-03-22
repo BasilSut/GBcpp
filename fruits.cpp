@@ -1,86 +1,46 @@
 #include <iostream>
 #include <string>
-using namespace std;
+using namespace std; 
 
-
-
-class Fruit{
+class Fruit {
 protected:
     string name;
-    string colour;
-
+    string color;
 public:
-    Fruit(string N, string C):name(N),colour(C){}
-    
-    string getName(){
-        return name;
+    Fruit(string n, string c) : name(n), color(c) {}
+    string getname() const {
+          return name;
     }
-    string getColor(){
-        return colour;
+    string getcolor() const {
+             return color;
     }
 };
 
-class Apple : public Fruit{
+class Apple : public Fruit {
 protected:
-    string m_apple = "apple";
 
 public:
-    Apple(string c):Fruit(m_apple,c){
-    }
-    Apple(string name, string c2):Fruit(name,c2){
-    }
-    string getName()  {
-        return name;
-    }
-    string getColor()  {
-        return colour;
+    Apple(string color) : Fruit("apple", color) {}
+};
+
+class Banana : public Fruit {
+public:
+    Banana() : Fruit("banana", "yellow") {}
+};
+class GrannySmith : public Apple {
+public:
+    GrannySmith() :Apple("green") {
+        name= "Granny Smith apple";
+
     }
 };
 
-
-class Banana : public Fruit{
-protected:
-   string m_banana = "banana";
-public:
-    Banana():Fruit(m_banana,"yellow"){ }
-
-    //Banana(string c):Fruit(m_banana,c){ }
-
-    string getName() {
-        return name;
-    }
-    string getColor()  {
-        return colour;
-    }
-};
-
-
-class GrannySmith : public Apple{
-protected:
-    string GrannySmith_name = "Granny Smith apple";
-    string Gr_colour = "green";
-
-public:
-  
-    GrannySmith(): Apple(GrannySmith_name,Gr_colour){ }
-
-    string getName()  {
-        return name;
-    }
-    string getColor(){
-        return colour;
-    }
-};
-
-int main(int argc, const char* argv[]){
-
+int main(int argc, const char** argv){
     Apple a("red");
-    //Banana b;
-    //GrannySmith c;
-
-    std::cout << "My " << a.getName() << " is " << a.getColor() << ".\n";
-  /*  std::cout << "My " << b.getName() << " is " << b.getColor() << ".\n";
-    std::cout << "My " << c.getName() << " is " << c.getColor() << ".\n";
-*/
+    Banana b;
+    GrannySmith c;
+    cout << "My " << a.getname() << " is " << a.getcolor() << endl;
+    cout << "My " << b.getname() << " is " << b.getcolor() << endl;
+    cout << "My " << c.getname() << " is " << c.getcolor() << endl;
     return 0;
 }
