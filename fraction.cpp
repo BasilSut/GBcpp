@@ -14,7 +14,7 @@ public:
     double getValue() const{
         return (double)numerator/denominator;
     }
-    friend Fraction operator-(const Fraction &f1)
+    friend Fraction& operator-(const Fraction &f1)
     {
         int a = (-1)* f1.numerator;
         int b = (-1) * f1.denominator;
