@@ -4,6 +4,7 @@
 #pragma once
 #include <memory>
 #include <iostream>
+using std::ostream;
 
 class Date {
 public:
@@ -19,31 +20,19 @@ public:
 	void set_month(int month);
 	void set_year(int year);
 
+
+	friend std::ostream& operator<<(std::ostream& out, const Date& point);
+	friend bool operator==(const Date &d1, const Date &d2);
+	friend bool operator!=(const Date &d1, const Date &d2);
+	friend bool operator>(const Date &d1, const Date &d2);
+	friend bool operator<(const Date &d1, const Date &d2);
+
 private:
 	int m_day;
 	int m_month;
 	int m_year;
-	friend std::ostream& operator<<(std::ostream& out, const Date& point);
 };	
 
-template <typename T>
-class AutoPtr {
-private:
-	T m_ptr;
-public:
-	AutoPtr(T* ptr);
-	~AutoPtr();
-	T* operator->() {
-		return m_ptr;
-	}
-	T& operator*() {
-		return *m_ptr;
-	}
-	friend std::ostream& operator<<(std::ostream& out, const T*& point) {
-		out << point;
-		return out;
-	}
-};
 
-// TODO: установите здесь ссылки на дополнительные заголовки, требующиеся для программы.
+
 

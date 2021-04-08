@@ -2,19 +2,26 @@
 #include <memory>
 using std::cout;
 using std::endl;
-using std::auto_ptr;
-
+//using std::auto_ptr;
+using std::unique_ptr;
+using std::make_unique;
 
 int main()
 {
 	
-	//AutoPtr<Date> Today2(new Date(6, 4, 2021));
-	Date* Today = new Date(4, 4, 2021);
-	cout << Today;
-	
-	std::unique_ptr<Date> Today3(new Date(12, 10, 2020));
-	cout << *Today3<<endl;
-	std::auto_ptr<Date> Date1(new Date(20, 10, 2007));
-	cout << *Date1;
+
+	//Date* Today0 = new Date(4, 4, 2021);
+	//cout << *Today0<<endl;
+	unique_ptr<Date> Today = make_unique<Date>(5, 4, 2022);
+	cout << *Today<<endl;
+	unique_ptr<Date> Date1 = make_unique<Date>(12, 5, 2040);
+	cout << *Date1<<endl;
+
+
+	if (*Today>*Date1)//как передать умные указатели в функцию?
+		cout << *Today << " -- bigger(older)" << endl;
+	else
+		cout << *Date1 << " -- bigger (older)" << endl;
+
 	return 0;
 }
