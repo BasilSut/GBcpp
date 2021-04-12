@@ -56,17 +56,32 @@ void Date::set_year(int year) {
 }
 
 std::ostream& operator<<(std::ostream &out, const Date &point) {
-	out << "The date is " << point.m_day<< "." << point.m_month << "." << point.m_year << std::endl;
+	out << "The date is " << point.m_day<< "." << point.m_month << "." << point.m_year;
 	return out;
 }
 
-
-template <typename T>
-AutoPtr<T>::AutoPtr(T* ptr){
-	m_ptr = ptr;
+bool operator==(const Date &d1, const Date &d2){
+	if(d1.m_year==d2.m_year && d1.m_month == d2.m_month && d1.m_day == d2.m_day)
+		return 1;
+	else
+		return 0;
+}
+bool operator!=(const Date &d1, const Date &d2){
+	if (d1.m_year == d2.m_year && d1.m_month == d2.m_month && d1.m_day == d2.m_day)
+		return 0;
+	else
+		return 1;
+}
+bool operator>(const Date &d1, const Date &d2){
+	if (d1.m_year >= d2.m_year || d1.m_month >= d2.m_month && d1.m_day > d2.m_day)
+		return 1;
+	else
+		return 0;
+}
+bool operator<(const Date &d1, const Date &d2){
+	if (d1.m_year <= d2.m_year || d1.m_month <= d2.m_month && d1.m_day < d2.m_day)
+		return 1;
+	else
+		return 0;
 }
 
-template <typename T>
-AutoPtr<T>::~AutoPtr() {
-	delete m_ptr;
-}
